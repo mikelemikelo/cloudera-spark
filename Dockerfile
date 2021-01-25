@@ -7,8 +7,6 @@ ADD CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo
 RUN yum -y install wget java-1.8.0-openjdk ; yum clean all
 
 #Python 3.6
-RUN yum -y clean all
-RUN yum -y update
 RUN yum -y install centos-release-scl
 RUN echo "https://vault.centos.org/6.10/os/x86_64/" > /var/cache/yum/x86_64/6/base/mirrorlist.txt
 RUN echo "http://vault.centos.org/6.10/extras/x86_64/" > /var/cache/yum/x86_64/6/extras/mirrorlist.txt
