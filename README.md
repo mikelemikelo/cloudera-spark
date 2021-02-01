@@ -68,7 +68,7 @@ Password: cloudera
 
 ___
 
-*Enable Kerberos in Cloudera Manager (If not installed)*
+### Enable Kerberos in Cloudera Manager (If not installed)
 
 Open in your browser: localhost:7180
 
