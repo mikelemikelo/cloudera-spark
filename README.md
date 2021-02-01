@@ -256,12 +256,17 @@ You can also export the keytab of a principal using
 	
 and then copy the keytab outside of the container into your PC, eg. 
 
-	docker cp [container_id]:/hdfs.keytab /Users/YOUR_LOCAL_USER/Desktop/
+	docker cp [container_id]:/etc/krb5.conf /etc/
+	docker cp [container_id]:/hdfs.keytab /etc/
 
 Now you can finally login as test@CLOUDERA using Kerberos at your local (client) machine by using  
 
-	kinit -k -t /Users/YOUR_LOCAL_USER/Desktop/hdfs.keytab hdfs@CLOUDERA
+	kinit -k -t /etc/hdfs.keytab hdfs@CLOUDERA
 
 Now we need to add a HDFS folder for that user.
 
 ---
+
+In order to test your Spark cluster with the updates, update your local HADOOP_CONF_FILES with the updated cluster ones after Kerberos.
+
+
