@@ -25,12 +25,19 @@ Add `quickstart.cloudera	127.0.0.1` into host machine `/etc/hosts`
 Ports being used:
 
 *cloudera welcome tutorial - 80
+
 *oozie - 8888
+
 *cloudera manager - 7180
+
 *hdfs REST api- 8020
+
 *webhdfs - 50070
+
 *kerberos - 88 (both tcp and udp)
+
 *secure data transfer - 1004 / 1006
+
 *custom spring boot webserver - 8990
 
 
@@ -233,7 +240,7 @@ Enter the Kerberos interactive shell type
 
 	kadmin.local
 		
-Now add a principal with name "test" by typing this command and then providing a password for this user  
+Now add a principal with name "hdfs" by typing this command and then providing a password for this user  
 
 	addprinc hdfs@CLOUDERA
 		
@@ -256,12 +263,17 @@ You can also export the keytab of a principal using
 	
 and then copy the keytab outside of the container into your PC, eg. 
 
-	docker cp [container_id]:/hdfs.keytab /Users/YOUR_LOCAL_USER/Desktop/
+	docker cp [container_id]:/etc/krb5.conf /etc/
+	docker cp [container_id]:/hdfs.keytab /etc/
 
 Now you can finally login as test@CLOUDERA using Kerberos at your local (client) machine by using  
 
-	kinit -k -t /Users/YOUR_LOCAL_USER/Desktop/hdfs.keytab hdfs@CLOUDERA
+	kinit -k -t /etc/hdfs.keytab hdfs@CLOUDERA
 
 Now we need to add a HDFS folder for that user.
 
 ---
+
+In order to test your Spark cluster with the updates, update your local HADOOP_CONF_FILES with the updated cluster ones after Kerberos.
+
+
