@@ -5,6 +5,10 @@ Pre-requisites:
 Add `quickstart.cloudera	127.0.0.1` into host machine `/etc/hosts`
 
 
+---
+
+### Cloudera Spark image 
+
 1- `cd` into `cloudera-spark` root folder. 
 
 2- Build the image with.
