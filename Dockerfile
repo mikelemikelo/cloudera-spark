@@ -66,6 +66,20 @@ RUN ln -s /usr/bin/python /usr/local/bin/pythonme
 RUN python -m pip install numpy
 
 
+##Updating YUM for Kerberos
+RUN sed -i 's/\/usr\/bin\/python/\/usr\/bin\/python2.6/g' /usr/bin/yum
+RUN sed -i 's/\/usr\/bin\/env python/\/usr\/bin\/env python2.6/g' /home/cloudera/cm_api.py
+
+RUN echo "https://vault.centos.org/6.10/os/x86_64/" > /var/cache/yum/x86_64/6/base/mirrorlist.txt
+RUN echo "http://vault.centos.org/6.10/extras/x86_64/" > /var/cache/yum/x86_64/6/extras/mirrorlist.txt
+RUN echo "http://vault.centos.org/6.10/updates/x86_64/" > /var/cache/yum/x86_64/6/updates/mirrorlist.txt
+RUN mkdir -p /var/cache/yum/x86_64/6/centos-sclo-rh/
+RUN mkdir -p /var/cache/yum/x86_64/6/centos-sclo-sclo/
+RUN echo "http://vault.centos.org/6.10/sclo/x86_64/rh" > /var/cache/yum/x86_64/6/centos-sclo-rh/mirrorlist.txt
+RUN echo "http://vault.centos.org/6.10/sclo/x86_64/sclo" > /var/cache/yum/x86_64/6/centos-sclo-sclo/mirrorlist.txt
+RUN yum -y install epel-release
+
+
 WORKDIR /home/cloudera
 
 #SPARK 
