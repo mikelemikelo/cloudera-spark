@@ -240,7 +240,7 @@ Enter the Kerberos interactive shell type
 
 	kadmin.local
 		
-Now add a principal with name "test" by typing this command and then providing a password for this user  
+Now add a principal with name "hdfs" by typing this command and then providing a password for this user  
 
 	addprinc hdfs@CLOUDERA
 		
