@@ -4,20 +4,61 @@ Pre-requisites:
 
 Add `quickstart.cloudera	127.0.0.1` into host machine `/etc/hosts`
 
-### Local Spark with cluster
+
+---
+
+### Building Cloudera Spark cluster image
+
+1- `cd` into `cloudera-spark` root folder. 
+
+2- Build the image with.
+
+`# docker build -t mikelemikelo/cloudera-spark:latest . `
+
+3- Once done, execute this every time you would like to have the image running:
+
+
+```
+# docker run --hostname=quickstart.cloudera --privileged=true -ti -p 7077:7077 -p 8188:8088 -p 8032:8032 -p 8020:8020 -p 50010:50010 -p 8042:8042 -p 7180:7180 -p 88:88/udp -p 88:88  mikelemikelo/cloudera-spark:latest /usr/bin/docker-quickstart-light 
+```
+
+Ports being used:
+
+*cloudera welcome tutorial - 80
+*oozie - 8888
+*cloudera manager - 7180
+*hdfs REST api- 8020
+*webhdfs - 50070
+*kerberos - 88 (both tcp and udp)
+*secure data transfer - 1004 / 1006
+*custom spring boot webserver - 8990
+
+
+Congrats! At this point you have a running local Cloudera Spark cluster.
+
+---
+
+
+### Adding Spark to local machine and connecting it to the running cluster.
+
+- Find `LAPTOP_USERNAME`
+
+from LOCAL terminal try
+`#whoami`
+
+This will return your `LAPTOP_USERNAME`
+
 
 - Copy the spark-2.4.4 into HOST machine:
 
-- from terminal try:
-`whoami`
+*(Make sure to enable remote access if you are on MAC before moving forward)*
 
-Make sure you change LAPTOP_USERNAME accordingly (Make sure to enable remote access if you are on MAC ) , whoami  - should return LAPTOP_USERNAME
 
 ```
 scp /opt/spark-2.4.4-bin-hadoop2.6.tgz LAPTOP_USERNAME@host.docker.internal:/Users/LAPTOP_USERNAME/DEST_FOLDER/
 scp -r /etc/hadoop/conf/ LAPTOP_USERNAME@host.docker.internal:/Users/LAPTOP_USERNAME/path/to/etc/hadoop/conf
 ```
-A laptop configured to point to the Spark container
+
 
 - Unzip the tarball that you scp’d over
 
@@ -64,39 +105,28 @@ ln -s ~/.pyenv/versions/3.6.9/bin/python3.6 /usr/local/bin/pythonme
 export PYSPARK_PYTHON=/usr/local/bin/pythonme
 ```
 
+Lets try it all together:
+
+1- From the spark folder:
+
+```
+./bin/spark-submit --master yarn --executor-memory 512MB --total-executor-cores 10 ./examples/src/main/python/pi.py
+```
+
+2 - If everything went fine, you should expect something like:
+
+```
+Pi is roughly 3.138920
+```
+
+
 
 ---
 
-### Cloudera Spark image 
-
-1- `cd` into `cloudera-spark` root folder. 
-
-2- Build the image with.
-
-`# docker build -t mikelemikelo/cloudera-spark:latest . `
-
-3- Once done, execute this every time you would like to have the image running:
-
-
-```
-# docker run --hostname=quickstart.cloudera --privileged=true -ti -p 7077:7077 -p 8188:8088 -p 8032:8032 -p 8020:8020 -p 50010:50010 -p 8042:8042 -p 7180:7180 -p 88:88/udp -p 88:88  mikelemikelo/cloudera-spark:latest /usr/bin/docker-quickstart-light 
-```
-
-Ports being used:
-
-*cloudera welcome tutorial - 80
-*oozie - 8888
-*cloudera manager - 7180
-*hdfs REST api- 8020
-*webhdfs - 50070
-*kerberos - 88 (both tcp and udp)
-*secure data transfer - 1004 / 1006
-*custom spring boot webserver - 8990
-
-
----
+## 2 PART - KERBEROS ENV
 
 ### Kerberos 
+
 
 Once the cluster is up and running, from within the POD, execute:
 
