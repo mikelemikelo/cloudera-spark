@@ -1,6 +1,7 @@
 # cloudera-spark
 
 1- `cd` into `cloudera-spark` root folder. 
+
 2- Build the image with.
 
 `# docker build -t mikelemikelo/cloudera-spark:latest . `
@@ -68,7 +69,7 @@ Password: cloudera
 
 ___
 
-### Enable Kerberos in Cloudera Manager (If not installed)
+### Enable Kerberos in Cloudera Manager
 
 Open in your browser: localhost:7180
 
@@ -124,7 +125,7 @@ You should be blocked by Kerberos raising a PrivilegedActionException.
 
 ---
 
-### 5. Adding a Kerberos user
+### Adding a Kerberos user
 
 You have to be using the "root" user to do the following.  
 
