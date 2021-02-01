@@ -25,12 +25,19 @@ Add `quickstart.cloudera	127.0.0.1` into host machine `/etc/hosts`
 Ports being used:
 
 *cloudera welcome tutorial - 80
+
 *oozie - 8888
+
 *cloudera manager - 7180
+
 *hdfs REST api- 8020
+
 *webhdfs - 50070
+
 *kerberos - 88 (both tcp and udp)
+
 *secure data transfer - 1004 / 1006
+
 *custom spring boot webserver - 8990
 
 
