@@ -178,6 +178,8 @@ ___
 
 ### Enable Kerberos in Cloudera Manager
 
+http://quickstart.cloudera:7180/
+
 Open in your browser: localhost:7180
 
 To login into Cloudera Manager use:
