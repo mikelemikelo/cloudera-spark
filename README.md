@@ -43,6 +43,14 @@ Ports being used:
 
 Congrats! At this point you have a running local Cloudera Spark cluster.
 
+
+---
+
+If you would like to have SPARK running locally and being able to have it connect to the cluster, then, please follow this guide:
+
+https://github.com/mikelemikelo/cloudera-spark/blob/main/LOCAL_ENV_SETUP.md
+
+
 ---
 
 ## 2 PART - KERBEROS ENV
