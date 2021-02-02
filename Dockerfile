@@ -11,7 +11,7 @@ RUN sed -i 's/\/usr\/bin\/python/\/usr\/bin\/python2.6/g' /usr/bin/yum
 RUN sed -i 's/\/usr\/bin\/env python/\/usr\/bin\/env python2.6/g' /home/cloudera/cm_api.py
 
 #Python 3.6
-RUN yum -y install centos-release-scl
+
 RUN echo "https://vault.centos.org/6.10/os/x86_64/" > /var/cache/yum/x86_64/6/base/mirrorlist.txt
 RUN echo "http://vault.centos.org/6.10/extras/x86_64/" > /var/cache/yum/x86_64/6/extras/mirrorlist.txt
 RUN echo "http://vault.centos.org/6.10/updates/x86_64/" > /var/cache/yum/x86_64/6/updates/mirrorlist.txt
@@ -23,6 +23,8 @@ RUN yum -y install epel-release
 RUN curl 'https://setup.ius.io/' -o setup-ius.sh
 RUN chmod a+x ./setup-ius.sh
 RUN ./setup-ius.sh
+
+RUN yum -y install centos-release-scl
 RUN yum -y install rh-python36
 RUN ln -fs /opt/rh/rh-python36/root/usr/bin/python /usr/bin/python
 
