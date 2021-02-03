@@ -1,12 +1,13 @@
-
 ### Environment set up for running spark-submit locally
 
 * If you use a Mac, find your `LAPTOP_USERNAME` by running:
     * `whoami`
 * If you use a Mac, enable remote access by following [this guide](https://osxdaily.com/2011/09/30/remote-login-ssh-server-mac-os-x/)
 * From the Cloudera container, run the following commands to copy the two folders locally (remember to update LAPTOP_USERNAME accordingly):
-    * `scp /opt/spark-2.4.4-bin-hadoop2.6.tgz LAPTOP_USERNAME@host.docker.internal:/Users/LAPTOP_USERNAME/spark-2.4.4-bin-hadoop2.6.tgz`
-    * `scp -r /etc/hadoop/conf/ LAPTOP_USERNAME@host.docker.internal:/Users/LAPTOP_USERNAME/path/to/etc/hadoop/conf`
+   ```
+    scp /opt/spark-2.4.4-bin-hadoop2.6.tgz LAPTOP_USERNAME@host.docker.internal:/Users/LAPTOP_USERNAME/spark-2.4.4-bin-hadoop2.6.tgz
+    scp -r /etc/hadoop/conf/ LAPTOP_USERNAME@host.docker.internal:/Users/LAPTOP_USERNAME/path/to/etc/hadoop/conf
+   ```
 * From your local terminal, run the following commands:
     * `tar -xzvf spark-2.4.4-bin-hadoop2.6.tgz`
     * `export SPARK_HOME=/Users/LAPTOP_USERNAME/spark-2.4.4-bin-hadoop2.6`
@@ -19,8 +20,8 @@
         ```
     * `export HADOOP_CONF_DIR=/Users/LAPTOP_USERNAME/path/to/etc/hadoop/conf`
     
-
-#### Installing Java 8 and/or Python 3.6 locally
+---
+### Installing Java 8 and/or Python 3.6 locally
 
 Your laptop needs Java 8 since that is the version Spark needs. If you need to install Java, you should be able to have it alongside whatever version of Java you might be running. `JAVA_HOME` needs to be pointing to Java 8.
 ```
@@ -37,9 +38,11 @@ ln -s ~/.pyenv/versions/3.6.9/bin/python3.6 /usr/local/bin/pythonme
 export PYSPARK_PYTHON=/usr/local/bin/pythonme
 ```
 
-#### Running spark-submit with a PySpark model
+---
+### Running spark-submit with a PySpark model
 
 In order to run your first PySpark model, run the following command from your local terminal:
-* `$SPARK_HOME/bin/spark-submit --master yarn --executor-memory 512MB --total-executor-cores 10 $SPARK_HOME/examples/src/main/python/pi.py`
-* If everything went fine, you should expect to see this line in the logs:
-    * `Pi is roughly 3.138920`
+```
+$SPARK_HOME/bin/spark-submit --master yarn --executor-memory 512MB --total-executor-cores 10 $SPARK_HOME/examples/src/main/python/pi.py
+```
+If everything went fine, you should expect to see this line in the logs: `Pi is roughly 3.138920`
